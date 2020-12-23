@@ -1,5 +1,6 @@
 const githubAPI = require('./github')
 const gitlabAPI = require('./gitlab')
+const genericAPI = require('./generic')
 
 const privateToken = (process.env && process.env.PRIVATE_TOKEN) || ''
 const SUPPORTED_REPO_TYPES = {
@@ -31,6 +32,16 @@ const SUPPORTED_REPO_TYPES = {
     getUserInfo: gitlabAPI.getUserInfo,
     getContributors: gitlabAPI.getContributors,
   },
+  generic: {
+    value: 'generic',
+    name: 'Generic Git Repo',
+    checkKey: 'name',
+    defaultHost: 'N/A',
+    linkToCommits: '<%= options.linkToCommits %>',
+    linkToIssues: '<%= options.linkToIssues %>',
+    linkToReviews: '<%= options.linkToReviews %>',
+    getUserInfo: genericAPI.getUserInfo
+  }
 }
 
 const getChoices = function() {

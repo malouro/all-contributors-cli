@@ -1,6 +1,7 @@
 const _ = require('lodash/fp')
 const inquirer = require('inquirer')
 const git = require('../util').git
+const choices = require('../repo').getChoices()
 const conventions = require('./commit-conventions')
 
 const questions = [
@@ -18,16 +19,7 @@ const questions = [
     type: 'list',
     name: 'repoType',
     message: 'What is the repository type?',
-    choices: [
-      {
-        value: 'github',
-        name: 'GitHub',
-      },
-      {
-        value: 'gitlab',
-        name: 'GitLab',
-      },
-    ],
+    choices,
     default: 'github',
   },
   {
